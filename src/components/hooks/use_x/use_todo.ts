@@ -8,19 +8,26 @@ export const useTodo = <TResponse,>(url: string) => {
   
   useEffect(() => {
     const fetchData = async () => {
+		
       try {
+		  
         const response = await fetch(url)
         setIsFetching(false)
+		
         if (response.status === 200) {
           const json = await response.json()
           setData(json)
         }
+		
       } catch (error: unknown) {
         setIsFetching(false)
+		
         if (isError(error)) {
           console.error(error.message)
         }
+		
       }
+	  
     }
     fetchData()
   }, [url])
